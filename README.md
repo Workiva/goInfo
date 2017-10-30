@@ -1,10 +1,6 @@
 # Introduction:
   A simple package to fetch information about the OS.  Currently supports Linux, Windows, and Darwin
-  
-## Version:
-
-version:0.0.1  
-  
+    
 ## Install:
 ```sh
   go get github.com/OneCloudInc/goInfo
@@ -69,5 +65,6 @@ On Windows:
    CPUs: 4
 ```
 
-##License and Copyright
+## License and Copyright
+
 This software is Copyright 2012-2014 Matis Hsiao.
