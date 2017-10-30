@@ -1,40 +1,28 @@
 # Introduction:
-  GoInfo is get os platform information coding by Golang.
-  
-  It can help you to know os information.
-  
+  A simple package to fetch information about the OS.  Currently supports Linux, Windows, and Darwin
   
 ## Version:
 
-version:0.0.1
-
-## Futures
-
-get linux information
-
-get windows information
-
-get osx information
-
-get freebsd information
-  
+version:0.0.1  
   
 ## Install:
 ```sh
-  go get github.com/matishsiao/goInfo
+  go get github.com/OneCloudInc/goInfo
   go build
 ```
 
 ## Struct:
 ```sh
-  type GoInfoObject struct {
-	GoOS string
-	Kernel string
-	Core string
-	Platform string
-	OS string
-	Hostname string
-	CPUs int
+type GoInfoObject struct {
+    GoOS string
+    Kernel string
+    Core string
+    Platform string
+    OS string
+    Hostname string
+    CPUs int
+    Name string // linux only
+    Distribution string // linux only
 }
 ```
 
@@ -48,49 +36,12 @@ get freebsd information
    )
 
    func main() {
-		gi := goInfo.GetInfo()
-		gi.VarDump()
+		gi, err := goInfo.GetInfo()
+		if err != nil {
+		    gi.VarDump()
+		}
 	 }
 
-```
-Get Linux Distribution version
-```sh
-package main
-import (
-     "github.com/pyToshka/goInfo"
-)
-
-func main() {
-    dist :=goInfo.GetInfo().Distribution
-    print(dist)
-
-
-}
-```
-Return
-```sh
-ubuntu@ubuntu-xenial:/tmp$
-16.04
-```
-
-Get Linux Distribution name
-```sh
-package main
-import (
-     "github.com/pyToshka/goInfo"
-)
-
-func main() {
-	dist :=goInfo.GetInfo().Name
-	print(dist)
-
-
-}
-```
-Return
-```sh
-[vagrant@localhost tmp]$
-centos
 ```
 
 On Linux:
