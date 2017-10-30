@@ -29,19 +29,21 @@ type GoInfoObject struct {
 ## Example:
 
 ```sh   
-   package main
+package main
 
-   import (
-	   "github.com/matishsiao/goInfo"
-   )
+import (
+    "github.com/matishsiao/goInfo"
+)
 
-   func main() {
-		gi, err := goInfo.GetInfo()
-		if err != nil {
-		    gi.VarDump()
-		}
-	 }
 
+func main() {
+    gi, err := goInfo.GetInfo()
+    if err != nil {
+        return
+    }
+    
+    gi.VarDump()
+}
 ```
 
 On Linux:
