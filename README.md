@@ -51,18 +51,59 @@ get freebsd information
 		gi := goInfo.GetInfo()
 		gi.VarDump()
 	 }
+
+```
+Get Linux Distribution version
+```sh
+package main
+import (
+     "github.com/pyToshka/goInfo"
+)
+
+func main() {
+    dist :=goInfo.GetInfo().Distribution
+    print(dist)
+
+
 }
+```
+Return
+```sh
+ubuntu@ubuntu-xenial:/tmp$
+16.04
+```
+
+Get Linux Distribution name
+```sh
+package main
+import (
+     "github.com/pyToshka/goInfo"
+)
+
+func main() {
+	dist :=goInfo.GetInfo().Name
+	print(dist)
+
+
+}
+```
+Return
+```sh
+[vagrant@localhost tmp]$
+centos
 ```
 
 On Linux:
 ```sh
    GoOS: linux
    Kernel: Linux
-   Core: 3.13.0-27-generic
+   Core: 3.10.0-693.2.1.el7.x86_64
    Platform: x86_64
    OS: GNU/Linux
-   Hostname: ubuntu
+   Hostname: localhost.localdomain
    CPUs: 1
+   Distribution version: 7
+   Distribution name: centos
 ```
 On Windows:
 ```sh
