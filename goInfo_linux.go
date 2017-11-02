@@ -33,13 +33,25 @@ func GetInfo() (*GoInfoObject, error) {
 		GoOS:     runtime.GOOS,
 		CPUs:     runtime.NumCPU(),
 	}
-	gio.Hostname, _ = os.Hostname()
-	gio.Distribution = _LinuxDist()
-	gio.Name = _Disname()
-	return gio
+	gio.Hostname, err = os.Hostname()
+	if err != nil {
+		return gio, err
+	}
+
+	gio.Distribution, err = _LinuxDist()
+	if err != nil {
+		return gio, err
+	}
+
+	gio.Name, err = _Disname()
+	if err != nil {
+		return gio, err
+	}
+
+	return gio, nil
 }
 
-func _getInfo() (string, err) {
+func _getInfo() (string, error) {
 	cmd := exec.Command("uname", "-srio")
 	cmd.Stdin = strings.NewReader("some input")
 	var out bytes.Buffer
@@ -50,7 +62,7 @@ func _getInfo() (string, err) {
 	if err != nil {
 		return "", err
 	}
-	return out.String()
+	return out.String(), nil
 }
 func _LinuxDist() (string, error) {
 	dist := exec.Command("sh", "-c", " cat /etc/*-release|egrep \"DISTRIB_RELEASE|REDHAT_SUPPORT_PRODUCT_VERSION\"|sed 's/DISTRIB_RELEASE=//g'|sed 's/REDHAT_SUPPORT_PRODUCT_VERSION=//g'|sed 's/\"//g'|tr -d '\n'")
@@ -62,7 +74,7 @@ func _LinuxDist() (string, error) {
 	err := dist.Run()
 
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	return out.String(), nil
@@ -77,7 +89,7 @@ func _Disname() (string, error) {
 	err := name.Run()
 
 	if err != nil {
-		return nil, err
+		return "", err
 	}
 
 	return out.String(), nil

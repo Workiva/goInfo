@@ -9,7 +9,7 @@ import (
 	"runtime"
 )
 
-func GetInfo() (*GoInfoObject, err) {
+func GetInfo() (*GoInfoObject, error) {
 	// Run the systeminfo command, specifying the output to be in CSV (/FO), with no header (/NH)
 	cmd := exec.Command("systeminfo", "/NH", "/FO", "CSV")
 	var out bytes.Buffer
@@ -50,5 +50,5 @@ func GetInfo() (*GoInfoObject, err) {
 		return nil, err
 	}
 
-	return gio
+	return gio, nil
 }
