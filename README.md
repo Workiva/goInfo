@@ -3,7 +3,7 @@
     
 ## Install:
 ```sh
-  go get github.com/OneCloudInc/goInfo
+  go get github.com/Workiva/goInfo
   go build
 ```
 
